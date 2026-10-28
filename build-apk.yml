@@ -54,13 +54,19 @@ jobs:
             --iconBackgroundColor '#4564e8' --iconBackgroundColorDark '#4564e8' \
             --splashBackgroundColor '#090d18' --splashBackgroundColorDark '#090d18'
 
+      - name: Ikon splash bersudut tumpul (vektor, tidak lewat alat ikon)
+        run: |
+          cp -r splash-res/. android/app/src/main/res/
+          find android/app/src/main/res -name 'ic_launcher_splash*' -o -name 'splash_bg*' -o -name 'splash_fg*'
+
       - name: Tema splash gelap (Android 12+)
         run: |
           S=android/app/src/main/res/values/styles.xml
           if grep -q 'AppTheme.NoActionBarLaunch' "$S"; then
-            sed -i 's#<style name="AppTheme.NoActionBarLaunch"[^>]*>#&\n        <item name="windowSplashScreenBackground">\#090d18</item>\n        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_round</item>#' "$S"
+            sed -i 's#<style name="AppTheme.NoActionBarLaunch"[^>]*>#&\n        <item name="windowSplashScreenBackground">\#090d18</item>\n        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_splash</item>#' "$S"
           fi
           cat "$S"
+          grep -q 'ic_launcher_splash' "$S" || { echo 'GAGAL: tema splash tidak terpasang'; exit 1; }
 
       - name: Izin getar
         run: |

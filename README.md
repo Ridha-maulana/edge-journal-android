@@ -8,6 +8,7 @@ pembaruan web otomatis ikut tanpa membuat APK baru. Jika APK bermasalah, versi w
 - `capacitor.config.json` — alamat web yang dimuat, warna, splash
 - `package.json` — paket Capacitor (Android, Filesystem, Share, Haptics, Splash Screen)
 - `assets/` — ikon dan splash sumber
+- `splash-res/` — ikon splash Android bersudut tumpul (vektor), disalin ke proyek saat build
 - `www/` — halaman cadangan (tidak dipakai saat alamat web aktif)
 - `debug.keystore` — kunci penanda tetap supaya APK baru bisa memperbarui APK lama
 - `build-apk.yml` — salin ke `.github/workflows/build-apk.yml` (dibuat manual sekali)
